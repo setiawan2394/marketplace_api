@@ -15,4 +15,19 @@ class TransaksiController extends Controller
         'data' => $transaksi
     ]);
 }
+public function store(Request $request)
+{
+    $request->validate([
+        'nama' => 'required',
+        'harga' => 'required|numeric'
+    ]);
+
+    $produk = Produk::create($request->all());
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Produk berhasil ditambahkan',
+        'data' => $produk
+    ]);
+}
 }
